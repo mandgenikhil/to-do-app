@@ -1,0 +1,211 @@
+/* .bgimage {
+  background-image: url(../../assests/images/background.svg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat; }
+
+.bgimg {
+  background-image: url(../../assests/images/background.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #999; } */
+
+  .loginContainer {
+    margin-top: 25px !important;
+    height: 480px;
+  }
+  
+  .loginColumn {
+    text-align: -webkit-center;
+    margin-top: 100px;
+  }
+  
+  .loginCard {
+    background: #e1e1e1 !important;
+    border-radius: 25px !important;
+  }
+  
+  .loginBody {
+    background: #e1e1e1;
+  }
+  
+  .card {
+    width: 300px;
+    border: 1px solid #c8ced3;
+    max-width: 100%;
+    position: relative;
+    width: 500px;
+    height: 300px;
+  }
+  
+  .card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+  }
+  
+  .hero-body-margin {
+    margin: auto;
+    width: 50%;
+  }
+  
+  .hero-body-border {
+    background: #d0d0d0;
+    border-radius: 25px;
+  }
+  
+  .btn-radius {
+    border-radius: 1em !important;
+  }
+  
+  .box-height {
+    height: 350px;
+  }
+  
+  @media screen and (max-width: 900px) and (min-width: 600px) {
+    .box-height {
+      height: 300px;
+    }
+  }
+  
+  .margin-left-5-percent {
+    margin-left: 5%;
+  }
+  
+  .home {
+    height: 100vh;
+    width: 100%;
+    /* background-image: url(../../assests/images/background-latest.svg); */
+    background-image: url(../../bg.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  
+  .logo-margin {
+    margin: 32px;
+  }
+  
+  .card {
+    height: 160px;
+    width: 240px;
+    border-radius: 4px;
+    padding: 25px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.15);
+  }
+  
+  .sufficiency-of-input {
+    height: 157px;
+    width: 479px;
+    color: #ffffff;
+    font-family: "Muli", sans-serif !important;
+    font-size: 1.125em;
+    letter-spacing: 1px;
+    line-height: 26px;
+    margin-top: 10%;
+    margin-left: 164px;
+  }
+  
+  .card-box-margin {
+    margin-left: 164px;
+    position: relative;
+    display: flex;
+  }
+  
+  .card-box-inside {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .card-top {
+    margin-top: 20px;
+  }
+  
+  .analyze-country-ca {
+    height: 26px;
+    width: 245px;
+    color: #000000;
+    font-family: "Muli", sans-serif !important;
+    font-size: 1.125em;
+    line-height: 26px;
+  }
+  
+  .flex-center {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .analyze-country {
+    color: #000000;
+    font-family: "Muli", sans-serif !important;
+    font-size: 28px;
+    line-height: 32px;
+    font-weight: 600;
+    margin-left: 1.031em;
+  }
+  
+  .middle {
+    margin-top: 25px;
+    width: 100%;
+  }
+  
+  .card:hover {
+    transform: scale(1.1);
+    transition: all 0.3s;
+  }
+  
+  .card:hover .btn-visible {
+    display: block;
+  }
+  
+  .card:hover .analyze-country-ca,
+  .card:hover .analyze-country {
+    color: #005cb2;
+  }
+  
+  .font-heading {
+    font-size: 1.125em;
+    line-height: 26px;
+    white-space: nowrap;
+  }
+  
+  .nav-home {
+    background-color: transparent !important;
+    box-shadow: none;
+  }
+  
+  .heading-margin {
+    margin-bottom: 10%;
+    margin-top: 0px;
+  }
+  
+  .heading-font {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 32px;
+  }
+  
+  .card-margin-left {
+    margin-left: 5%;
+  }
+  
+  .back-arrow {
+    background: #73a2ce;
+    border-radius: 50%;
+  }
+  
+  .back-arrow:hover {
+    transform: scale(1.1);
+    transition: all 0.3s;
+    background: #73a2ce;
+    border-radius: 50%;
+  }
+  
+  .arrow-margin-bottom {
+    margin-bottom: 5%;
+  }
+  

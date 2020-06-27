@@ -1,0 +1,452 @@
+@charset "utf-8";
+
+// Import a Google Font
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,500,700");
+
+$primary: #005cb2;
+
+// Button color
+$link: #005cb2;
+$text-color: #ffffff;
+$achive-target: #ecb714;
+$accelerate-growth: #00b050;
+$revist-strategy: #ff0000;
+$actual-background: #eaeaea9e;
+$size-small: 0.8rem;
+$size-normal: 1rem;
+$size-medium: 1.5rem;
+$weight-semibold: 600;
+$letter-spacing: 0.1em;
+$tooltip-background-color: #ffffff;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Muli", sans-serif !important;
+  min-width: 1000px;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  overflow: auto !important;
+  scroll-behavior: smooth;
+
+  select {
+    font-family: "Muli", sans-serif !important;
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.bold-text-500 {
+  font-weight: 500;
+}
+
+.table {
+  width: 100%;
+}
+
+.flex-center {
+  display: flex !important;
+  justify-content: center !important;
+}
+.padding-bottom-one {
+  padding-bottom: 1rem !important;
+}
+.letter-spacing-point-one {
+  letter-spacing: $letter-spacing;
+}
+.font-weight-six-hundred {
+  font-weight: 600;
+}
+.margin-top-five-percent {
+  margin-top: 5%;
+}
+@mixin font-size-point-eight {
+  font-size: $size-small !important;
+}
+@mixin font-size-header {
+  font-size: $size-medium !important;
+}
+@mixin font-size-normal {
+  font-size: $size-normal !important;
+}
+.font-size-point-eight {
+  @include font-size-point-eight;
+}
+.font-size-header {
+  @include font-size-header;
+}
+
+.padding-zero {
+  padding: 0 !important;
+}
+.padding-one-point-five {
+  padding: $size-medium !important;
+}
+
+.rc-slider-handle {
+  border: solid 2px $link !important;
+}
+.rc-slider-track {
+  background-color: $link !important;
+}
+.white,
+.target-color {
+  color: $text-color;
+}
+.journey {
+  margin: 0;
+  @include font-size-normal;
+}
+
+.rectangle-current-achive-target {
+  background: $achive-target;
+  width: 338px;
+  margin-bottom: -50px;
+  margin-left: 66px;
+  height: 42px;
+  @include font-size-point-eight;
+}
+
+.rectangle-future-achive-target {
+  background: $achive-target;
+  width: 387px;
+  margin-bottom: -50px;
+  margin-left: 69px;
+  height: 42px;
+  @include font-size-point-eight;
+}
+
+.rectangle-future-accelerate-growth {
+  background: $accelerate-growth;
+  width: 256px;
+  margin-top: 8px;
+  margin-left: 456px;
+  height: 42px;
+  @include font-size-point-eight;
+}
+
+.rectangle-future-revist-strategy {
+  background: $revist-strategy;
+  width: 387px;
+  margin-left: 69px;
+  height: 42px;
+  @include font-size-point-eight;
+}
+
+.rectangle-future-imporove-sales-growth {
+  background: $achive-target;
+  width: 256px;
+  margin-left: 456px;
+  height: 42px;
+  margin-top: -42px;
+  @include font-size-point-eight;
+}
+
+.rectangle-current-accelerate-growth {
+  background: $accelerate-growth;
+  width: 320px;
+  margin-bottom: 0px;
+  margin-left: 390px;
+  height: 42px;
+  margin-top: 8px;
+  @include font-size-point-eight;
+}
+
+.rectangle-current-revist-strategy {
+  background: $revist-strategy;
+  width: 338px;
+  margin-left: 69px;
+  height: 42px;
+  @include font-size-point-eight;
+}
+
+.rectangle-current-imporove-sales-growth {
+  background: $revist-strategy;
+  width: 320px;
+  margin-left: 392px;
+  height: 42px;
+  margin-top: -42px;
+  @include font-size-point-eight;
+}
+
+.actual-planned-offtake-div {
+  margin-left: 69px;
+  width: 642px;
+  margin-top: 20px;
+  @include font-size-point-eight;
+}
+
+.color-background {
+  color: #ffffff;
+  background: #767171;
+}
+.box-center {
+  margin: auto 0 !important;
+}
+.actual-text-background {
+  background-color: $actual-background;
+}
+.margin-12 {
+  margin: -12px;
+}
+
+@mixin flex-column-reverse {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+svg.recharts-surface {
+  overflow: visible;
+}
+
+//Setup
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+@mixin stagger-anim-delay($i, $initial-delay, $stagger-delay) {
+  @while $i > 0 {
+    &:nth-of-type(#{$i}) {
+      animation-delay: $initial-delay + $stagger-delay * $i;
+    }
+    $i: $i - 1;
+  }
+}
+
+body {
+  margin-top: 20px;
+  font-family: "Open Sans", sans-serif;
+  color: #282828;
+}
+
+//Demo
+.skills {
+  width: 80%;
+  max-width: 960px;
+  height: 780px;
+  margin: auto;
+
+  position: relative;
+}
+
+.lines {
+  height: 100%;
+  position: relative;
+}
+.line {
+  height: inherit;
+  width: 2px;
+
+  position: absolute;
+
+  background: rgba(#eee, 0.6);
+
+  &.l--0 {
+    left: 0;
+  }
+  &.l--25 {
+    left: 25%;
+  }
+  &.l--50 {
+    left: 50%;
+  }
+  &.l--75 {
+    left: 75%;
+  }
+  &.l--100 {
+    left: calc(100% - 1px);
+  }
+}
+.line__label {
+  display: block;
+  width: 100px;
+  text-align: center;
+
+  position: absolute;
+  bottom: -20px;
+  right: -50px;
+
+  &.title {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
+
+.charts {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.chart {
+  margin: 30px 0 0;
+
+  &:first-child {
+    margin: 0;
+  }
+}
+
+.chart__title {
+  display: block;
+  margin: 0 0 10px;
+
+  font-weight: bold;
+
+  opacity: 0;
+
+  animation: 1s anim-lightspeed-in ease forwards;
+
+  .chart--dev & {
+  }
+  .chart--prod & {
+    animation-delay: 3.3s;
+  }
+  .chart--design & {
+    animation-delay: 4.5s;
+  }
+}
+
+.chart--horiz {
+  overflow: hidden;
+}
+
+.chart__bar {
+  $border-rad: 4px;
+  height: 30px;
+  margin-bottom: 10px;
+
+  background: linear-gradient(to left, #4cb8c4, #3cd3ad);
+  border-top-right-radius: $border-rad;
+  border-bottom-right-radius: $border-rad;
+  opacity: 0;
+
+  animation: 1s anim-lightspeed-in ease forwards;
+
+  .chart--dev & {
+    @include stagger-anim-delay(11, 0.5s, 0.2s);
+  }
+  .chart--prod & {
+    @include stagger-anim-delay(2, 3.8s, 0.2s);
+  }
+  .chart--design & {
+    @include stagger-anim-delay(3, 5s, 0.2s);
+  }
+}
+
+.chart__label {
+  padding-left: 10px;
+  line-height: 30px;
+  color: white;
+}
+
+//Keyframes
+@keyframes anim-lightspeed-in {
+  0% {
+    transform: translateX(-200%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.flex-space {
+  display: flex;
+  justify-content: space-around;
+}
+.margin {
+  margin-left: 1rem;
+}
+.recharts-cartesian-axis-ticks {
+  color: #000000;
+  font-family: Avenir;
+  font-size: 11px;
+  font-weight: 300;
+  line-height: NaNpx;
+}
+text {
+  color: #000000;
+  font-family: "Muli", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.28px;
+  line-height: 20px;
+}
+.label {
+  color: #000428 !important;
+  font-family: "Muli", sans-serif !important;
+  font-size: 12px !important;
+  line-height: 20px !important;
+}
+
+.header-container {
+  margin-bottom: 6px;
+}
+.menu {
+  font-size: 14px !important;
+}
+.modal-card-foot {
+  border-top: none !important;
+}
+.modal-card-head {
+  border-bottom: none !important;
+}
+.modal-card-head,
+.modal-card-foot {
+  background-color: white !important;
+}
+.css-yk16xz-control {
+  color: black !important;
+}
+.z-index-zero {
+  z-index: 0;
+}
+.section {
+  padding-top: 0.75rem !important;
+  padding-bottom: 2rem !important;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.tooltip:hover::before,
+.tooltip.is-tooltip-active::before {
+  color: #000000 !important;
+  border: 1px solid #000000 !important;
+}
+.recharts-label {
+  font-size: 14px !important;
+}
+.recharts-cartesian-axis-tick-value {
+  font-family: Avenir;
+  font-size: 11px;
+  font-weight: 300;
+  line-height: NaNpx;
+}
+.tooltip.is-tooltip-right:focus:not(.is-loading)::after,
+.tooltip.is-tooltip-right:hover:not(.is-loading)::after,
+.tooltip.is-tooltip-right.is-tooltip-active:not(.is-loading)::after {
+  border-color: transparent #000000 transparent transparent !important;
+}
+
+.main-container {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+@import "bulma/bulma";
+@import "bulma-tooltip/dist/css/bulma-tooltip";
+
+
+.dash-svg{
+  width: 40px;   
+}
