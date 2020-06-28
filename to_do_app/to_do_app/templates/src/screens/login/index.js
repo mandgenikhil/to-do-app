@@ -20,33 +20,13 @@ export class LoginPage extends Component {
 		localStorage.clear();
 	}
 
-	componentDidUpdate(prevProps, prevState) {
-		if (this.props.Token !== null && this.props.Token !== '' && prevProps.Token !== this.props.Token) {
-			this.props.history.push('/Dashboard/People');
-		}
-	}
+	// componentDidUpdate(prevProps, prevState) {
+	// 	if (this.props.Token !== null && this.props.Token !== '' && prevProps.Token !== this.props.Token) {
+	// 		this.props.history.push('/Dashboard/People');
+	// 	}
+	// }
 
-	grantAccess = () => {
-		fetch(APIURLS.V1.validateUser, {
-			method: 'POST',
-			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				data: {
-					username: this.props.UserName,
-					password: this.props.passWord
-				}
-			})
-		})
-			.then((response) => response.json())
-			.then((json) => {
-				this.setState({
-					isauth: json['data']['isauth']
-				});
-			});
-	};
+	
 
 	handleKeyDown(e) {
 		if (e.key === 'Enter') {
@@ -153,7 +133,7 @@ export class LoginPage extends Component {
 
 					if (json['key'] !== undefined) {
                         localStorage.setItem('key', json['key']);
-                        localStorage.setItem('user_name', ['user']['username']);						
+                        localStorage.setItem('user_name', json['user']['username']);						
                         this.props.history.push('/ToDo');
 					} 
 					else 

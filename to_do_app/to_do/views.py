@@ -37,9 +37,10 @@ class to_do(RetrieveUpdateDestroyAPIView):
 class edit_to_do(RetrieveUpdateDestroyAPIView):    
     permission_classes = (IsAuthenticated, IsOwnerOrReadOnly,)    
     def post(self, request):
-        try:            
-            todo_id = request.POST['todo_id']            
-            todo_data = request.POST['todo_data']
+        try:        
+            received_json_data=json.loads(request.body)    
+            todo_id = received_json_data['todo_id']            
+            todo_data = received_json_data['todo_data']
 
             todo_value = ToDo.objects.get(user_name=request.user,
                             todo_id=str(todo_id)                         
@@ -57,8 +58,9 @@ class delete_to_do(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticated, IsOwnerOrReadOnly,)    
     def post(self, request):
         try:            
-            todo_id = request.POST['todo_id']            
-            todos = ToDo.objects.filter(todo_id=todo_id).delete()                
+            received_json_data=json.loads(request.body)
+            todo_id = received_json_data['todo_id']            
+            todos = ToDo.objects.filter(todo_id=todo_id).delete()                            
             return api_response({"response":"sucess"})
         except Exception as e:                     
             HttpResponse(str(e),status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -69,8 +71,13 @@ class save_to_do(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticated, IsOwnerOrReadOnly,)    
     def post(self, request):
         try:            
-            todo_title = request.POST['todo_title']
-            todo_data = request.POST['todo_data']
+            print("headers = ",request.headers)
+            received_json_data=json.loads(request.body)
+            print("json data = ",received_json_data)
+            todo_title = received_json_data['todo_title']
+            print("todo_title = ",todo_title)
+            todo_data = received_json_data['todo_data']
+            print("todo_data = ",todo_data)
             todo_value = ToDo(user_name=request.user,
                          todo_id=str(request.user) +str(datetime.now()),
                          todo_title=todo_title,
@@ -79,5 +86,6 @@ class save_to_do(RetrieveUpdateDestroyAPIView):
             todo_value.save()                                                      
             return api_response({"response":"sucess"})
         except Exception as e:            
+            print("Exception = ",e)
             HttpResponse(str(e),status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
