@@ -3,7 +3,8 @@ const Content = {
 		gettodos: 'http://localhost:8000/api/v1/to_do',
 		savetodos: 'http://localhost:8000/api/v1/save_to_do',
 		deletetodo: 'http://localhost:8000/api/v1/delete_to_do',		
-		validateUser: 'http://localhost:8000/rest-auth/login/'		
+		edittodo:'http://localhost:8000/api/v1/edit_to_do',
+		validateUser: 'http://localhost:8000/rest-auth/login/'
 	}
 };
 

@@ -10,6 +10,7 @@ export class ToDo extends Component {
       toggleModal: false,
       todo_id: "",
       text_data: "",
+      text_edit_data: "",
       answer: "",
       responseList: [],
     };
@@ -18,9 +19,13 @@ export class ToDo extends Component {
     this.handleModalDisplay = this.handleModalDisplay.bind(this);
   }
 
-  handleModalDisplay(todo_id) {
+  handleModalDisplay(todo_id, todo_data) {
     this.setState((prev) => {
-      return { toggleModal: !prev.toggleModal, todo_id: todo_id };
+      return {
+        toggleModal: !prev.toggleModal,
+        todo_id: todo_id,
+        text_edit_data: todo_data,
+      };
     });
   }
 
@@ -82,6 +87,57 @@ export class ToDo extends Component {
     });
   }
 
+  editToDo(todo_id) {
+    var text_edit_data = document.getElementById("edit").value;
+
+    if (text_edit_data !== null && text_edit_data.trim() !== "") {
+      fetch(APIURLS.V1.edittodo, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Token " + localStorage.getItem("key"),
+        },
+        body: JSON.stringify({
+          todo_id: todo_id,
+          todo_data: text_edit_data,
+        }),
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          if (json["response"] !== undefined) {
+            fetch(APIURLS.V1.gettodos, {
+              method: "GET",
+              mode: "cors",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Token " + localStorage.getItem("key"),
+              },
+            })
+              .then((response) => response.json())
+              .then((json) => {
+                this.setState({
+                  key: json["key"],
+                });
+                if (json["response"] !== undefined) {
+                  this.setState({
+                    responseList: json["response"],
+                  });
+                } else {
+                  this.setState({
+                    isError: true,
+                    errorMsg: "Please enter valid credentials",
+                  });
+                }
+              });
+          }
+        });
+
+      this.setState((prev) => {
+        return { toggleModal: !prev.toggleModal, todo_id: "" };
+      });
+    }
+  }
   onEnterClickAction() {
     fetch(APIURLS.V1.savetodos, {
       method: "POST",
@@ -141,7 +197,6 @@ export class ToDo extends Component {
         .then((response) => response.json())
         .then((json) => {
           if (json["response"] !== undefined) {
-            console.log("Mandge", json);
             fetch(APIURLS.V1.gettodos, {
               method: "GET",
               mode: "cors",
@@ -175,23 +230,29 @@ export class ToDo extends Component {
     const ModalDescription = (props) => {
       if (props.toggleModal === true) {
         return (
-          <div class="modal">
+          <div class="modal is-active">
             <div class="modal-background"></div>
             <div class="modal-card">
-              <header class="modal-card-head">
-                <p class="modal-card-title">
-                  Do You Wanted To Delete This ToDo?
-                </p>
-                <button class="delete" aria-label="close"></button>
-              </header>
+              <header class="modal-card-head">Please edit your todo</header>
               <section class="modal-card-body">
-                <button class="button is-success">Yes</button>
-                <button class="button">Cancel</button>
+                <textarea
+                  id="edit"
+                  class="textarea"
+                  placeholder={props.text_edit_data}
+                ></textarea>
+                <button
+                  className="button info"
+                  onClick={() => this.editToDo(props.todo_id)}
+                >
+                  Save
+                </button>
+                <button
+                  className="button info"
+                  onClick={() => this.handleModalDisplay()}
+                >
+                  Cancel
+                </button>
               </section>
-              {/* <footer class="modal-card-foot">
-      <button class="button is-success">Save changes</button>
-      <button class="button">Cancel</button>
-    </footer> */}
             </div>
           </div>
         );
@@ -201,7 +262,12 @@ export class ToDo extends Component {
     };
     return (
       <div>
-        <ModalDescription toggleModal={this.state.toggleModal} />
+        <ModalDescription
+          toggleModal={this.state.toggleModal}
+          handleEditChange={this.handleEditChange}
+          todo_id={this.state.todo_id}
+          text_edit_data={this.state.text_edit_data}
+        />
         <header>
           <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
@@ -251,7 +317,7 @@ export class ToDo extends Component {
           <div>
             <textarea
               class="textarea"
-              placeholder="e.g. Hello world"
+              placeholder="Please write your todo here"
               onChange={this.handleChange}
             ></textarea>
           </div>
