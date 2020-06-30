@@ -16,17 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url,re_path
-from .views import RegisterView, CustomLoginView
+from .views import CustomLoginView
 from . import views
 
 urlpatterns = [
     path("", views.index),
     path("static/<str:folder>/<str:file>", views.static_file_handler),    
     url(r'^', include('to_do.urls')),
-    url(r'^rest-auth/login/', CustomLoginView.as_view()),
-    url(r'^rest-auth/registration/', RegisterView.as_view()),
-    url(r'^rest-auth/', include('rest_auth.urls')),
-    re_path(r'^/*', views.index)
-    # url(r'^admin/', admin.site.urls),
-    
+    url(r'^rest-auth/login/', CustomLoginView.as_view()),        
+    re_path(r'^/*', views.index)    
 ]

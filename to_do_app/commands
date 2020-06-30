@@ -1,0 +1,4 @@
+curl -d '{"username":"shashank","password1":"test123!@#","password2":"test123!@#"}' -H 'Content-Type: application/json' http://localhost:8000/rest-auth/registration/
+
+
+curl -d '{"username":"naresh","password1":"test123!@#","password2":"test123!@#"}' -H 'Content-Type: application/json' http://localhost:8000/rest-auth/registration/

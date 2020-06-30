@@ -200,7 +200,7 @@ export class LoginPage extends Component {
         </div>
       );
     } else {
-      return "test";
+      return null
     }
   }
 }

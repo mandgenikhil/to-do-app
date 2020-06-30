@@ -66,32 +66,6 @@ sensitive_post_parameters_m = method_decorator(
 )
 
 
-class RegisterView(CreateAPIView):
-    serializer_class = RegisterSerializer
-    permission_classes = register_permission_classes()
-    token_model = TokenModel
-
-    @sensitive_post_parameters_m
-    def dispatch(self, *args, **kwargs):
-        return super(RegisterView, self).dispatch(*args, **kwargs)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        content = {
-            "details": "Registered"
-        }
-        return Response(content,
-                        status=status.HTTP_201_CREATED,
-                        headers=headers)
-
-    def perform_create(self, serializer):
-        user = serializer.save(self.request)
-
-        complete_signup(self.request._request, user, None, None)
-        return user
 
 
 class CustomLoginView(LoginView):

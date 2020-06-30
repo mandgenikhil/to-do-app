@@ -10,8 +10,7 @@ export class ToDo extends Component {
       toggleModal: false,
       todo_id: "",
       text_data: "",
-      text_edit_data: "",
-      answer: "",
+      text_edit_data: "",    
       responseList: [],
     };
     this.handleModalDisplay = this.handleModalDisplay.bind(this);
@@ -73,14 +72,6 @@ export class ToDo extends Component {
     });
   };
 
-  clearData = () => {
-    this.setState({
-      text_data: " ",
-      answer: "",
-      responseList: [],
-    });
-  };
-
   onClearClickAction() {
     this.setState({
       text_data: " ",
@@ -115,10 +106,7 @@ export class ToDo extends Component {
               },
             })
               .then((response) => response.json())
-              .then((json) => {
-                this.setState({
-                  key: json["key"],
-                });
+              .then((json) => {               
                 if (json["response"] !== undefined) {
                   this.setState({
                     responseList: json["response"],
@@ -139,47 +127,53 @@ export class ToDo extends Component {
     }
   }
   onEnterClickAction() {
-    fetch(APIURLS.V1.savetodos, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Token " + localStorage.getItem("key"),
-      },
-      body: JSON.stringify({
-        todo_title: "Test To Do",
-        todo_data: this.state.text_data,
-      }),
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        if (json["response"] !== undefined) {
-          fetch(APIURLS.V1.gettodos, {
-            method: "GET",
-            mode: "cors",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Token " + localStorage.getItem("key"),
-            },
-          })
-            .then((response) => response.json())
-            .then((json) => {
-              this.setState({
-                key: json["key"],
+    if (this.state.text_data !== "")
+    {
+      fetch(APIURLS.V1.savetodos, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Token " + localStorage.getItem("key"),
+        },
+        body: JSON.stringify({
+          todo_title: "Test To Do",
+          todo_data: this.state.text_data,
+        }),
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          if (json["response"] !== undefined) {
+            fetch(APIURLS.V1.gettodos, {
+              method: "GET",
+              mode: "cors",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Token " + localStorage.getItem("key"),
+              },
+            })
+              .then((response) => response.json())
+              .then((json) => {             
+                if (json["response"] !== undefined) {
+                  this.setState({
+                    responseList: json["response"],
+                  });
+                } else {
+                  this.setState({
+                    isError: true,
+                    errorMsg: "Please enter valid credentials",
+                  });
+                }
               });
-              if (json["response"] !== undefined) {
-                this.setState({
-                  responseList: json["response"],
-                });
-              } else {
-                this.setState({
-                  isError: true,
-                  errorMsg: "Please enter valid credentials",
-                });
-              }
-            });
-        }
-      });
+          }
+        });
+
+    }
+    else
+    {
+      alert("Please provide your inputs");
+    }
+    
   }
   onClickFunction(todo_id) {
     if (todo_id !== undefined) {
@@ -206,10 +200,7 @@ export class ToDo extends Component {
               },
             })
               .then((response) => response.json())
-              .then((json) => {
-                this.setState({
-                  key: json["key"],
-                });
+              .then((json) => {               
                 if (json["response"] !== undefined) {
                   this.setState({
                     responseList: json["response"],
@@ -304,7 +295,8 @@ export class ToDo extends Component {
           </nav>
         </header>
 
-        <article class="box">
+        <div id = "div_1" class="div_1">
+        
           {this.state.responseList.map((elementData) => {
             return (
               <ToDoItem
@@ -314,14 +306,23 @@ export class ToDo extends Component {
               />
             );
           })}
-          <div>
+          {this.state.responseList.length === 0 ? 
+          <div className="center is-size-1-touch">
+            Your To-Do List Is Empty, Please add your To-Do's
+
+            </div>
+            : null
+          }
+           
+          </div>
+       
+          <div id = "div_2" className="div_2">
             <textarea
               class="textarea"
               placeholder="Please write your todo here"
               onChange={this.handleChange}
             ></textarea>
-          </div>
-          <div class="level-right">
+              <div class="level-right">
             <span>
               <button
                 className="button info"
@@ -331,7 +332,9 @@ export class ToDo extends Component {
               </button>
             </span>
           </div>
-        </article>
+          </div>
+        
+       
       </div>
     );
   }
