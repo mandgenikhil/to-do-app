@@ -20,11 +20,8 @@ print("Base Dir = ",BASE_DIR)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '=$d(2=0b)-8)6a&@b&+%3em(o848w*gh8&%0(&=#(uf^4v_j^@'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 BASE_URL = os.environ.get('BASE_URL', "localhost:8000")
